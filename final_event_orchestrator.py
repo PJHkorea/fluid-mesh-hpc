@@ -50,7 +50,6 @@ class FinalEventOrchestrator:
             return
             
         elif marker_signal == -99.0:
-            # 🚨 결함 절연막 통과 신호 발생: 대왕성주의 즉각적인 전역 Cold Standby 우회 루트 개입 발동
             # [KR] 🚨 결함 절연막 통과 신호 발생: 대왕성주의 즉각적인 전역 Cold Standby 우회 루트 개입 발동
             # [EN] 🚨 Isolated Fault Signal Intercepted: Instantly invokes the supreme emergency routing sequence to deploy Cold Standby infrastructure
             self.execute_emergency_rerouting(sector_id)
