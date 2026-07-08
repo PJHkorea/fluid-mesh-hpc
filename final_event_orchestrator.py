@@ -39,8 +39,8 @@ class FinalEventOrchestrator:
         @details [KR] 대왕성주는 32채널 실시간 시공간 파동 텐서 전체를 매번 연산하지 않고, Layer 2 방화벽이 최종 정제하여 
                       쏘아올린 특정 섹터의 마커 신호만 읽어 연산 부하를 0에 수렴시킵니다.
                  [EN] Instead of executing heavy computations over the entire 32-channel space-time wave tensors, 
-                 the global orchestrator exclusively evaluates single-bit event markers refined by the Layer 2 neural firewall, 
-                 suppressing active runtime load during normal operations.
+                      the global orchestrator exclusively evaluates single-bit event markers refined by the Layer 2 neural firewall, 
+                      suppressing active runtime load during normal operations.
         """
         if marker_signal == 0.0:
             return # [KR] 정상 상태(Baseline): 비동기 감시 상태 유지 (연산 부하 0) / [EN] Normal state (Baseline): Maintains passive listening (Zero active runtime load)
@@ -57,8 +57,8 @@ class FinalEventOrchestrator:
 
            def execute_emergency_rerouting(self, failed_sector_id: int):
         """
-        @brief [👑 제왕의 즉각 융단 개입] 잠든 Cold Standby 중간 성주를 깨워 루트를 전환하는 핵심 제어 기믹
-               [KR] [👑 제왕의 즉각 융단 개입] 잠든 Cold Standby 중간 성주를 깨워 루트를 전환하는 핵심 제어 기믹
+        @brief [👑 제왕의 즉각 개입] 잠든 Cold Standby 중간 성주를 깨워 루트를 전환하는 핵심 제어 기믹
+               [KR] [👑 제왕의 즉각 개입] 잠든 Cold Standby 중간 성주를 깨워 루트를 전환하는 핵심 제어 기믹
                [EN] [👑 Sovereign's Instant Strategic Mobilization] Core routing mechanism to awaken and hot-swap failed sectors with dormant Cold Standby instances
         """
         if self.sector_status[failed_sector_id] == "CRITICAL":
@@ -71,7 +71,6 @@ class FinalEventOrchestrator:
             print("❌ [🚨 인프라 전멸] 더 이상 가동할 수 있는 예비 배관 Cold Standby 중간 성주가 없습니다!")
             return
 
-        # 1. 💤 잠들어 있는 예비 구역의 중간 성주 중 하나를 선택해 즉시 Mobilization(동원)
         # [KR] 1. 💤 잠들어 있는 예비 구역의 중간 성주 중 하나를 선택해 즉시 Mobilization(동원)
         # [EN] 1. Mobilization Sequence: Pop the primary available backup node from the sleeping registry pool
         backup_sector_id = self.sleeping_standby_sectors.pop(0)
