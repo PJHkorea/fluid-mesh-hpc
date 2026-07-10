@@ -48,7 +48,7 @@ To completely neutralize monolithic CPU bottlenecks and Python's Global Interpre
 
 1. **Edge Detection (Layer 1)**: The C99 kernel continuously samples high-frequency vortex oscillations via AC-coupled piezoelectric sensors across 32-channel edge arrays. Upon catastrophic physical failure, it stamps a `-99.0f` absolute fracture token into hardware registers instantly without branch-induced jitter.
 2. **Decentralized AI Isolation (Layer 2)**: The specific **Layer 2 AI Core** assigned to that sector ingests the local 32-channel telemetry. Upon detecting the `-99.0f` marker, it immediately flags the malfunctioning segment, activates the `stop_gradient` firewall to mathematically freeze and protect its sovereign weights from gradient explosion, and passes a single-bit refined alert token upward.
-3. **Global Mobilization (Layer 3)**: Gaining asynchronous interrupt속보 from the compromised **Layer 2 Core**, the supreme **Layer 3 Global Orchestrator** maintains its zero-runtime computational load advantage. It triggers a hardware interrupt, awakens the sleeping `Cold Standby` actuators, and injects parametric constants via high-speed DMA register streaming to initiate instantaneous **Cross-Axis Curl Inversion** bypass rerouting.
+3. **Global Mobilization (Layer 3)**: Gaining asynchronous **telemetry alerts** from the compromised **Layer 2 Core**, the supreme **Layer 3 Global Orchestrator** maintains its zero-runtime computational load advantage. It triggers a hardware interrupt, awakens the sleeping `Cold Standby` actuators, and injects parametric constants via high-speed DMA register streaming to initiate instantaneous **Cross-Axis Curl Inversion** bypass rerouting.
 
 
 ```text
