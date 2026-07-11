@@ -102,6 +102,17 @@ This mathematical cross-inversion generates an autonomous rotational Curl vector
 
 This software repository is published under the **GNU General Public License v3**. This codebase serves as an official, un-expungable **Defensive Prior Art Registration**. Any attempt by centralized enterprise entities or patent monetization agents to enclose, clone, privatize, or restrict these specific structural topographies, JAX isolation gates, or branchless C-MUX emulation mechanisms is legally prohibited under international copyleft patent grant clauses.
 
+---
+
+## 🔒 Defensive Patent Notice & Cross-Domain Linkage (GNU GPLv3 Enforced)
+
+This software is published under the terms of the **GNU GPLv3**, and its technological framework stands as an official defensive prior art cross-engineered alongside the **[Quantum-Mesh-QEC]** (**Apache 2.0**) project.
+
+
+### 🔄 Cross-Domain Derivative & Prior Art Notice
+
+*  Core 3-tier, branchless emulation, and gradient isolation from this repo are linked to **[Quantum-Mesh-QEC]**. Any attempt to privatize, clone, or restrict these specific mechanisms—whether in fluid dynamics or other fields—within **proprietary closed-source architectures** will immediately activate the reciprocal **GNU GPLv3 copyleft patent protections** of this codebase.
+
 
 ---
 
@@ -205,3 +216,14 @@ $$V_{\text{fault}} = -\text{공간 그라디언트 } V \implies + \text{South}$$
 ## 🔒 방어적 특허 공지 (GNU GPLv3 적용)
 
 본 소프트웨어 리포지토리는 **GNU General Public License v3**에 따라 배포됩니다. 본 소스코드와 아키텍처는 공식적이고 말소 불가능한 **방어적 선행기술 등록(Defensive Prior Art Registration)** 자격을 갖춥니다. 거대 기업이나 특허 괴물(Patent Troll)이 본 기술 고유의 구조적 토폴로지, JAX 격리 게이트, 또는 분기 없는 C-MUX 에뮬레이션 메커니즘을 독점, 복제, 사유화하거나 권리를 제한하려는 모든 시도는 국제 카피레프트 특허 허가 조항에 따라 법적으로 금지됩니다.
+
+---
+
+## 🔒 방어적 특허 공지 및 교차 도메인 연계 (GNU GPLv3 적용)
+
+본 소프트웨어는 **GNU GPLv3**에 따라 배포되며, 기술적 구조는 **[Quantum-Mesh-QEC]** (**Apache 2.0**) 프로젝트와 교차 엔지니어링된 방어적 선행기술입니다.
+
+### 🔄 Cross-Domain Derivative & Prior Art Notice
+
+* 본 저장소의 핵심 3티어 아키텍처 및 무분기 에뮬레이션은 **[Quantum-Mesh-QEC]** (**Apache 2.0**)와 교차 엔지니어링된 기술입니다. 타 도메인 활용 시에도 이 구조를 **독점 상용(Proprietary) 및 폐쇄형 아키텍처**로 유용하거나 특허를 사유화하려는 시도는 **GNU GPLv3의 강력한 카피레프트 및 호혜적 소스코드 공개 의무에 즉각 귀속**됨을 명시합니다.
+
