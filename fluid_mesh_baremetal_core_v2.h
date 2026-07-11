@@ -12,8 +12,8 @@
  */
 
 
-#ifndef FLUID_MESH_BAREMETAL_CORE_H
-#define FLUID_MESH_BAREMETAL_CORE_H
+#ifndef FLUID_MESH_BAREMETAL_CORE_V2_H
+#define FLUID_MESH_BAREMETAL_CORE_V2_H
 
 #include <stdint.h>
 #include <stdbool.h>
