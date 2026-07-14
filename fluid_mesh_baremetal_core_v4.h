@@ -179,12 +179,12 @@ static inline float fluid_mesh_cell32_process(
     float density_phi_pred = (cos_theta * self->fluid_density_phi) - (sin_theta * self->velocity_theta);
     float velocity_theta_pred = (sin_theta * self->fluid_density_phi) + (cos_theta * self->velocity_theta);
 
-    /* 3. Division Purge: Linear Offset Reciprocal LUT Indexing for Attenuation */
+        /* 3. Division Purge: Linear Offset Reciprocal LUT Indexing for Attenuation */
     float scaled_kinetic_energy = fabsf(density_phi_pred * self->vorticity_bias);
     float numerator = 6.0f * scaled_kinetic_energy;
     float denominator = 12.0f + (scaled_kinetic_energy * scaled_kinetic_energy) + 1e-9f; /* Singularity prevention epsilon */
 
-       /* [The Mathematical Masterstroke] Convert heavy hardware division into single-cycle DSP multiplication */
+    /* [The Mathematical Masterstroke] Convert heavy hardware division into single-cycle DSP multiplication */
     /* [Defensive Guard Integration] Clamp denominator to 12.0f to completely neutralize negative integer underflow */
     float clamped_denom = (denominator < 12.0f) ? 12.0f : denominator;
 
@@ -194,11 +194,10 @@ static inline float fluid_mesh_cell32_process(
     float reciprocal_denom = RECIPROCAL_CELL_LUT[lut_index];
     float rational_scale_factor = numerator * reciprocal_denom;
 
+    /* [Layer 2 Synchronization Gate] Synchronize extreme hardware saturation directly with JAX core thresholds */
+    is_anomaly |= (uint32_t)(denominator > 1e6f);
 
-
-
-
-       /* 4. State Update & Zero-Jitter Hardware MUX Bit Interception */
+    /* 4. State Update & Zero-Jitter Hardware MUX Bit Interception */
     float next_density_phi = density_phi_pred + (self->vorticity_bias * (raw_flow_signal - density_phi_pred)) * rational_scale_factor;
     float fail_val = -99.0f;
 
@@ -207,6 +206,7 @@ static inline float fluid_mesh_cell32_process(
     uint32_t next_density_u;
     uint32_t fail_val_u;
     uint32_t final_density_u;
+
 
     __builtin_memcpy(&next_density_u, &next_density_phi, sizeof(float));
     __builtin_memcpy(&fail_val_u, &fail_val, sizeof(float));
@@ -225,7 +225,6 @@ static inline float fluid_mesh_cell32_process(
 }
 
    
-
 
 /**
  * @brief [Layer 2 Offload Engine] 64-Bit Core Spatial Matrix Controller (Spontaneous Curl Diverter)
@@ -249,37 +248,30 @@ static inline FluidMeshVector64 fluid_mesh_core64_process(
     /* 1. Neighbor Node State Extraction & Apoptosis Filter Configuration */
     /* Enforces deterministic, 1-clock branchless multiplexing at the hardware wire level */
     /* to completely isolate faulty multi-channel telemetry streams without pipeline stalls. */
-    double east, west, north, south;
+    double isolated_channels[FLUID_NEIGHBOR_MAX];
     
     double zero_d = 0.0;
     uint64_t zero_u;
     __builtin_memcpy(&zero_u, &zero_d, sizeof(double));
 
-    /* Extract and cast input telemetry streams natively via __builtin_memcpy to avoid union traps */
-    double east_d  = (double)neighbor_sensor_signals[DIR_EAST];
-    double west_d  = (double)neighbor_sensor_signals[DIR_WEST];
-    double north_d = (double)neighbor_sensor_signals[DIR_NORTH];
-    double south_d = (double)neighbor_sensor_signals[DIR_SOUTH];
+    /* [Hardware Optimization] Completely unroll loop into 4 independent, parallel physical wires */
+#pragma HLS UNROLL
+    for (int i = 0; i < FLUID_NEIGHBOR_MAX; i++) {
+        double raw_val = (double)neighbor_sensor_signals[i];
+        uint64_t raw_bits;
+        __builtin_memcpy(&raw_bits, &raw_val, sizeof(double));
 
-    uint64_t east_u, west_u, north_u, south_u;
-    __builtin_memcpy(&east_u,  &east_d,  sizeof(double));
-    __builtin_memcpy(&west_u,  &west_d,  sizeof(double));
-    __builtin_memcpy(&north_u, &north_d, sizeof(double));
-    __builtin_memcpy(&south_u, &south_d, sizeof(double));
+        /* Branchless 64-bit hardware multiplexer assignment routing faulty registers (-99.0f) to safe zero */
+        uint64_t final_bits = (neighbor_sensor_signals[i] == -99.0f) ? zero_u : raw_bits;
+        __builtin_memcpy(&isolated_channels[i], &final_bits, sizeof(double));
+    }
 
-    uint64_t east_final_u, west_final_u, north_final_u, south_final_u;
+    /* Map isolated registers directly to local variables with 0ns compiler wire aliases */
+    double east  = isolated_channels[DIR_EAST];
+    double west  = isolated_channels[DIR_WEST];
+    double north = isolated_channels[DIR_NORTH];
+    double south = isolated_channels[DIR_SOUTH];
 
-    /* Hardwired 64-bit Multiplexer (MUX) for instantaneous fault isolation */
-    east_final_u  = fluid_branchless_select_u64((neighbor_sensor_signals[DIR_EAST]  == -99.0f), zero_u, east_u);
-    west_final_u  = fluid_branchless_select_u64((neighbor_sensor_signals[DIR_WEST]  == -99.0f), zero_u, west_u);
-    north_final_u = fluid_branchless_select_u64((neighbor_sensor_signals[DIR_NORTH] == -99.0f), zero_u, north_u);
-    south_final_u = fluid_branchless_select_u64((neighbor_sensor_signals[DIR_SOUTH] == -99.0f), zero_u, south_u);
-
-    /* Seamless raw bit stream re-injection into the double-precision tracking variables */
-    __builtin_memcpy(&east,  &east_final_u,  sizeof(double));
-    __builtin_memcpy(&west,  &west_final_u,  sizeof(double));
-    __builtin_memcpy(&north, &north_final_u, sizeof(double));
-    __builtin_memcpy(&south, &south_final_u, sizeof(double));
 
    
 
