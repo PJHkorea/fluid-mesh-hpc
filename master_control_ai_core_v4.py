@@ -152,13 +152,6 @@ if __name__ == "__main__":
     print(optimized_constants)
 
 
-        
-               # Verify that the initial JIT overhead is thoroughly isolated, bringing runtime loops down to microsecond (µs) bounds
-        print(f"Step {step+1:02d} | Anomaly Matrix Loss: {loss:.6f} | Execution Time: {(end_step - start_step)*1000:.4f} ms")
-    
-    print("\n[Target 2D Sub-Grid Static Parametric Matrix Constants Output]:")
-    print(optimized_constants)
-
 
         """
     💡 [PRODUCTION DEPLOYMENT & INTEGRATION GUIDELINE]
