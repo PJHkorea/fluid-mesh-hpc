@@ -184,12 +184,16 @@ static inline float fluid_mesh_cell32_process(
     float numerator = 6.0f * scaled_kinetic_energy;
     float denominator = 12.0f + (scaled_kinetic_energy * scaled_kinetic_energy) + 1e-9f; /* Singularity prevention epsilon */
 
-    /* [The Mathematical Masterstroke] Convert heavy hardware division into single-cycle DSP multiplication */
-    uint32_t lut_index = (uint32_t)((denominator - 12.0f) * 0.3404255f);
+       /* [The Mathematical Masterstroke] Convert heavy hardware division into single-cycle DSP multiplication */
+    /* [Defensive Guard Integration] Clamp denominator to 12.0f to completely neutralize negative integer underflow */
+    float clamped_denom = (denominator < 12.0f) ? 12.0f : denominator;
+
+    uint32_t lut_index = (uint32_t)((clamped_denom - 12.0f) * 0.3404255f);
     lut_index = (lut_index > 63) ? 63 : lut_index; /* Hard upper bound protection gate */
     
     float reciprocal_denom = RECIPROCAL_CELL_LUT[lut_index];
     float rational_scale_factor = numerator * reciprocal_denom;
+
 
 
 
